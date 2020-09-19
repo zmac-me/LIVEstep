@@ -10,7 +10,7 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
-pkg install -y git gmake gnustep-make gnustep
+pkg install -y git gmake gnustep-make gnustep xcb-util
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
