@@ -11,6 +11,15 @@ defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
 # Does this do anything?
 defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES # https://github.com/AlessandroSangiuliano/uroswm/issues/2#issuecomment-695198746
 
+# Do not show hidden files in GWorkspace
+defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
+
+# Make it easier to find the relevant folders
+sudo mkdir -p /Library /Users /System
+mount | grep  /Library || sudo mount -t nullfs /usr/local/GNUstep/Library /Library
+mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
+mount | grep  /System || sudo mount -t nullfs /usr/local/GNUstep/System /System
+
 # As long as we use Fluxbox, hide its toolbar
 # FIXME: Remove the need for Fluxbox
 mkdir -p ~/.fluxbox/
