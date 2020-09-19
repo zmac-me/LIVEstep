@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+# This script is executed on the build host
+# at the time when the image is created. This is just a temporary script
+# until the software below is available in pkg
+
+HERE=$(readlink -f .)
+
+if [ -z "${uzip}" ] ; then
+ echo "\$uzip missing. Exiting"
+fi
+
+pkg install -y git gmake gnustep-make gnustep
+
+. /usr/local/GNUstep/System/Makefiles/GNUstep.sh
+
+cd /tmp
+
+REPOS="BertrandDekoninck/TopBar"
+# BertrandDekoninck/rik.theme
+
+for REPO in $REPOS ; do
+  git clone "https://github.com/${REPO}"
+  cd $(basename "${REPO}")
+  gmake
+  ls "${uzip}"
+  DESTDIR="${uzip}" gmake install
+  cd -
+  rm -rf $(basename "${REPO}")
+done
+
+
+REPO="AlessandroSangiuliano/rik.theme"
+git clone "https://github.com/${REPO}"
+cd $(basename "${REPO}") # sic!
+gmake
+ls "${uzip}"
+DESTDIR="${uzip}" gmake install
+cd -
+rm -rf $(basename "${REPO}")
+
+# Build dependency needed for uroswm
+REPO="AlessandroSangiuliano/XcbKit"
+git clone "https://github.com/${REPO}"
+cd $(basename "${REPO}")/XCBKit # sic!
+gmake
+ls "${uzip}"
+gmake install # Install on the build system; this is needed for libraries
+DESTDIR="${uzip}" gmake install
+cd -
+rm -rf $(basename "${REPO}")
+
+REPO="AlessandroSangiuliano/uroswm"
+git clone "https://github.com/${REPO}"
+cd $(basename "${REPO}")/$(basename "${REPO}")
+gmake
+ls "${uzip}"
+DESTDIR="${uzip}" gmake install
+cd -
+rm -rf $(basename "${REPO}")
+
+cd "${HERE}"
+
+# In the installed system:
+# cat > /.xinitrc <<\EOF
+# #!/bin/sh
+# . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
+# defaults write NSGlobalDomain GSTheme Rik
+# defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
+# defaults write NSGlobalDomain GSBackHandlesWindowDecoration NO # https://github.com/AlessandroSangiuliano/uroswm/issues/2#issuecomment-695198746
+# # uroswm &
+# compton &
+# openapp GWorkspace
+# EOF
+

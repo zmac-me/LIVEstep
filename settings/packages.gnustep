@@ -1,0 +1,8 @@
+gworkspace
+compton
+terminal.app
+preferences
+systempreferences
+# WindowMaker and GWorkspace seem to be redundant
+# So we use fluxbox for now
+fluxbox

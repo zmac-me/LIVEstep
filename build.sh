@@ -24,7 +24,7 @@ iso="${livecd}/iso"
     # to non-tmpfs should be an acceptable compromise
     iso="${CIRRUS_WORKING_DIR}"
   fi
-uzip="${livecd}/uzip"
+export uzip="${livecd}/uzip"
 cdroot="${livecd}/cdroot"
 ramdisk_root="${cdroot}/data/ramdisk"
 vol="furybsd"
@@ -124,7 +124,7 @@ packages()
   cat "${cwd}/settings/packages.common" | sed '/^#/d' | sed '/\!i386/d' | xargs /usr/local/sbin/pkg-static -c "${uzip}" install -y
   while read -r p; do
     /usr/local/sbin/pkg-static -c ${uzip} install -y /var/cache/pkg/"${p}"-0.txz
-  done <"${cwd}"/settings/overlays.common
+  done <"${cwd}"/settings/overlays.common | sed '/^#/d' | sed '/\!i386/d'
   # TODO: Show dependency tree so that we know why which pkgs get installed
   # cat "${cwd}/settings/packages.common" | sed '/^#/d' | sed '/\!'"${arch}"'/d' | xargs /usr/local/sbin/pkg-static -c "${uzip}" info -d
   # cat "${cwd}/settings/packages.${desktop}" | sed '/^#/d' | sed '/\!'"${arch}"'/d' | xargs /usr/local/sbin/pkg-static -c "${uzip}" info -d
@@ -132,10 +132,8 @@ packages()
   if [ -f "${cwd}/settings/overlays.${desktop}" ] ; then
     while read -r p; do
       /usr/local/sbin/pkg-static -c ${uzip} install -y /var/cache/pkg/"${p}"-0.txz
-    done <"${cwd}/settings/overlays.${desktop}"
+    done <"${cwd}/settings/overlays.${desktop}" | sed '/^#/d' | sed '/\!i386/d'
   fi
-  /usr/local/sbin/pkg-static -c ${uzip} info > "${cdroot}/data/system.uzip.manifest"
-  cp "${cdroot}/data/system.uzip.manifest" "${isopath}.manifest"
   rm ${uzip}/etc/resolv.conf
   umount ${uzip}/var/cache/pkg
   umount ${uzip}/dev
@@ -205,13 +203,32 @@ pkg()
   cd "${packages}"
   while read -r p; do
     sh -ex "${cwd}/scripts/build-pkg.sh" -m "${cwd}/overlays/uzip/${p}"/manifest -d "${cwd}/overlays/uzip/${p}/files"
-  done <"${cwd}"/settings/overlays.common
+  done <"${cwd}"/settings/overlays.common | sed '/^#/d' | sed '/\!i386/d'
   if [ -f "${cwd}/settings/overlays.${desktop}" ] ; then
     while read -r p; do
       sh -ex "${cwd}/scripts/build-pkg.sh" -m "${cwd}/overlays/uzip/${p}"/manifest -d "${cwd}/overlays/uzip/${p}/files"
-    done <"${cwd}/settings/overlays.${desktop}"
+    done <"${cwd}/settings/overlays.${desktop}" | sed '/^#/d' | sed '/\!i386/d'
   fi
   cd -
+}
+
+script()
+{
+  if [ -e "${cwd}/settings/script.${desktop}" ] ; then
+    # cp "${cwd}/settings/script.${desktop}" "${uzip}"/tmp/script
+    # chmod +x "${uzip}"/tmp/script
+    # chroot "${uzip}" /tmp/script
+    # rm "${uzip}"/tmp/script
+    "${cwd}/settings/script.${desktop}"
+  fi
+}
+
+tree()
+{
+  cp "${cwd}/scripts/pkgtree.sh" "${uzip}"
+  chroot "${uzip}" /pkgtree.sh -U -p -r -n > pkgtree
+  mv pkgtree "${isopath}.pkgtree"
+  rm -f "${uzip}/pkgtree.sh"
 }
 
 uzip() 
@@ -249,15 +266,12 @@ image()
 
 cleanup()
 {
-if [ ! -z "${CI}" ] ; then
-  # On CI systems there is no reason to clean up which takes time
-  return
+if [ -d "${livecd}" ] ; then
+  # chflags -R noschg ${uzip} ${cdroot} >/dev/null 2>/dev/null
+  # TODO: Speed this operation up, e.g., usin zpool destroy -f ...
+  rm -rf ${uzip} ${cdroot} ${ports} >/dev/null 2>/dev/null
 fi
-  if [ -d "${livecd}" ] ; then
-    # chflags -R noschg ${uzip} ${cdroot} >/dev/null 2>/dev/null
-    rm -rf ${uzip} ${cdroot} ${ports} >/dev/null 2>/dev/null
-  fi
-  echo "$isopath created"
+echo "$isopath created"
 }
 
 workspace
@@ -268,6 +282,8 @@ packages
 rc
 user
 dm
+script
+tree
 uzip
 ramdisk
 boot

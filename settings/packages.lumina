@@ -3,3 +3,7 @@ lumina
 pcdm
 qterminal
 # pc-networkmanager # missing for i386?
+open-vm-tools
+git
+wpa_supplicant_gui
+webcamoid

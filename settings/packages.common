@@ -20,7 +20,6 @@ drm-kmod
 nvidia-driver # !i386
 mesa-libs
 mesa-dri
-open-vm-tools
 virtualbox-ose-additions
 xauth
 xinit
@@ -29,13 +28,10 @@ xdg-user-dirs
 xdg-utils
 doas
 xterm
-git
 bash
 usbids
 dhcpcd
-wpa_supplicant_gui
 webcamd
-webcamoid
 utouch-kmod
 pv
 cpdup
@@ -43,4 +39,3 @@ iichid
 avahi-app
 nss_mdns
 openntpd
-py37-qt5-widgets
