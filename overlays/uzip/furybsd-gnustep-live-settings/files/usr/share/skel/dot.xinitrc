@@ -14,11 +14,12 @@ defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES # https://github
 # Do not show hidden files in GWorkspace
 defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
 
-# Make it easier to find the relevant folders
-sudo mkdir -p /Library /Users /System
+# Courtesy mounts
+sudo mkdir -p /Library /System /Users /Volumes
 mount | grep  /Library || sudo mount -t nullfs /usr/local/GNUstep/Library /Library
-mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
 mount | grep  /System || sudo mount -t nullfs /usr/local/GNUstep/System /System
+mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
+mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
 
 # As long as we use Fluxbox, hide its toolbar
 # FIXME: Remove the need for Fluxbox
