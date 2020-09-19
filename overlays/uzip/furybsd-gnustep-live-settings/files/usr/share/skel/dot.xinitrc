@@ -14,6 +14,12 @@ defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES # https://github
 # Do not show hidden files in GWorkspace
 defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
 
+# Fonts
+defaults write NSGlobalDomain NSFont "Luxi Sans"
+defaults write NSGlobalDomain NSBoldFont "Luxi Sans"
+defaults write NSGlobalDomain NSUserFont "Luxi Sans"
+defaults write NSGlobalDomain NSFontSize "12"
+
 # Courtesy mounts
 sudo mkdir -p /Library /System /Users /Volumes
 mount | grep  /Library || sudo mount -t nullfs /usr/local/GNUstep/Library /Library
@@ -31,6 +37,9 @@ session.screen0.toolbar.visible:        false
 EOF
 
 compton &
+
+# Show a global menu while a non-GS application is foremost
+openapp TopBar &
 
 openapp GWorkspace &
 
