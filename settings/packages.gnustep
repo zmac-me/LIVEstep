@@ -6,7 +6,6 @@ systempreferences
 gorm
 projectcenter
 gnustep-wrapper
-
 # WindowMaker and GWorkspace seem to be redundant
 # So we use fluxbox for now
 fluxbox
