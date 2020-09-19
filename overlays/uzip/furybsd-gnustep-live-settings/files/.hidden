@@ -1,7 +1,9 @@
-bin                     
-boot               
+bin
+boot
 compat
+COPYRIGHT
 dev
+entropy
 etc
 home
 lib
