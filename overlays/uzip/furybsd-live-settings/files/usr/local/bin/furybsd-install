@@ -179,6 +179,7 @@ cat >> "${FSMNT}/boot/loader.conf" <<\EOF
 # Decrease boot verbosity, show splash
 # and fix resolution setting for Intel
 boot_mute="YES"
+verbose_loading="NO"
 beastie_disable="YES"
 autoboot_delay=0
 EOF
