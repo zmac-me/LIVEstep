@@ -150,32 +150,49 @@ class IntroPage(QtWidgets.QWizardPage, object):
         self.setTitle('Create FuryBSD Live Media')
         self.setSubTitle("This will download a FuryBSD Live image and will write it to an attached storage device.")
 
-        disk_vlayout = QtWidgets.QVBoxLayout(self)
+        self.releases_url = None
 
-        # Edition label
+        self.disk_vlayout = QtWidgets.QVBoxLayout(self)
+
+        # Repo dropdown
+
+        self.repo_menu = QtWidgets.QComboBox()
+        self.available_repos = ["https://api.github.com/repos/probonopd/furybsd-livecd/releases", "https://api.github.com/repos/furybsd/furybsd-livecd/releases"]
+        for available_repo in self.available_repos:
+            self.repo_menu.addItem("/".join(available_repo.split("/")[4:6]))
+        self.disk_vlayout.addWidget(self.repo_menu)
+        self.repo_menu.currentTextChanged.connect(self.populateImageList)
+
+        # Release label
         self.label = QtWidgets.QLabel()
-        self.label.setText("Please an image:")
-        disk_vlayout.addWidget(self.label)
+        self.label.setText("Please choose an image:")
+        self.disk_vlayout.addWidget(self.label)
 
         # Release ListWidget
         self.release_listwidget = QtWidgets.QListWidget()
-        disk_vlayout.addWidget(self.release_listwidget)
+        self.disk_vlayout.addWidget(self.release_listwidget)
         self.release_listwidget.itemSelectionChanged.connect(self.onSelectionChanged)
-
 
     def initializePage(self):
         print("Displaying IntroPage")
+        self.populateImageList()
 
+    def populateImageList(self):
         if internetCheckConnected() == False:
             wizard.showErrorPage("This requires an active internet connection.")
+            self.label.hide()  # FIXME: Why is this needed? Can we do without?
+            self.repo_menu.hide()  # FIXME: Why is this needed? Can we do without?
+            self.release_listwidget.hide()  # FIXME: Why is this needed? Can we do without?
+            return
 
-        releases_url = "https://api.github.com/repos/furybsd/furybsd-livecd/releases"
-        print("Getting releases from", releases_url)
+        url = self.available_repos[self.repo_menu.currentIndex()]
+        print("Getting releases from", url)
 
         self.available_isos = []
+        self.release_listwidget.clear()
 
         try:
-            with urllib.request.urlopen(releases_url) as url:
+            with urllib.request.urlopen(url) as url:
                 data = json.loads(url.read().decode())
                 # print(data)
                 for release in data:
@@ -187,13 +204,17 @@ class IntroPage(QtWidgets.QWizardPage, object):
                                 self.release_listwidget.addItem(display_name)
         except:
             wizard.showErrorPage("The list of available images could not be retrieved.")
+            self.label.hide()  # FIXME: Why is this needed? Can we do without?
+            self.repo_menu.hide()  # FIXME: Why is this needed? Can we do without?
+            self.release_listwidget.hide()  # FIXME: Why is this needed? Can we do without?
+            return
 
 
     def onSelectionChanged(self):
         print("onSelectionChanged")
         print("selectedIndexes", self.release_listwidget.selectedIndexes())
         items = self.release_listwidget.selectedItems()
-        print(items[0].text())
+        # print(items[0].text())
         for available_iso in self.available_isos:
             if available_iso["name"] == items[0].text():
                 wizard.selected_iso_url = available_iso["url"]
@@ -423,7 +444,7 @@ class SuccessPage(QtWidgets.QWizardPage, object):
         self.setTitle('Live Medium Complete')
         self.setSubTitle('You can now boot from the Live medium.')
 
-        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/check.png').scaledToHeight(256, QtCore.Qt.SmoothTransformation)
+        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/check.png').scaledToHeight(128, QtCore.Qt.SmoothTransformation)
         logo_label = QtWidgets.QLabel()
         logo_label.setPixmap(logo_pixmap)
 
@@ -458,7 +479,7 @@ class ErrorPage(QtWidgets.QWizardPage, object):
         self.setTitle('Error')
         self.setSubTitle('The installation could not be performed.')
 
-        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/cross.png').scaledToHeight(256, QtCore.Qt.SmoothTransformation)
+        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/cross.png').scaledToHeight(128, QtCore.Qt.SmoothTransformation)
         logo_label = QtWidgets.QLabel()
         logo_label.setPixmap(logo_pixmap)
 
