@@ -1,6 +1,8 @@
 # WindowMaker and GWorkspace seem to be redundant
 # So we use fluxbox for now
 fluxbox
+# Use slim until we find something using AppKit
+slim
 # FIXME: How to do this properly:
 # wget https://www.freshports.org/gnustep/ -O - | grep "<big>" | cut -d ">" -f 4 | cut -d '"' -f 2 | cut -d "/" -f 3 |  sort | uniq
 aclock
