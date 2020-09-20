@@ -100,6 +100,7 @@ class InstallWizard(QtWidgets.QWizard, object):
         self.error_message_nice = "An unknown error occured."
 
         self.setWizardStyle(QtWidgets.QWizard.MacStyle)
+        # self.setPixmap(QtWidgets.QWizard.BackgroundPixmap, QtGui.QPixmap(os.path.dirname(__file__) + '/Background.png'))
 
         self.setWindowTitle("Create FuryBSD Live Media")
         self.setFixedSize(600, 400)
@@ -157,7 +158,7 @@ class IntroPage(QtWidgets.QWizardPage, object):
         # Repo dropdown
 
         self.repo_menu = QtWidgets.QComboBox()
-        self.available_repos = ["https://api.github.com/repos/probonopd/furybsd-livecd/releases", "https://api.github.com/repos/furybsd/furybsd-livecd/releases"]
+        self.available_repos = ["https://api.github.com/repos/furybsd/furybsd-livecd/releases", "https://api.github.com/repos/probonopd/furybsd-livecd/releases"]
         for available_repo in self.available_repos:
             self.repo_menu.addItem("/".join(available_repo.split("/")[4:6]))
         self.disk_vlayout.addWidget(self.repo_menu)
@@ -442,9 +443,9 @@ class SuccessPage(QtWidgets.QWizardPage, object):
         wizard.playSound()
 
         self.setTitle('Live Medium Complete')
-        self.setSubTitle('You can now boot from the Live medium.')
+        self.setSubTitle('The Live image has been written to the device.')
 
-        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/check.png').scaledToHeight(128, QtCore.Qt.SmoothTransformation)
+        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/usbsuccess.svg').scaledToHeight(160, QtCore.Qt.SmoothTransformation)
         logo_label = QtWidgets.QLabel()
         logo_label.setPixmap(logo_pixmap)
 
@@ -459,11 +460,11 @@ class SuccessPage(QtWidgets.QWizardPage, object):
         layout.addWidget(center_widget, True) # True = add stretch vertically
 
         label = QtWidgets.QLabel()
-        label.setText("The FuryBSD Live medium has been written.")
+        label.setText("You can now start your computer from the Live medium.")
+        label.setWordWrap(True)
         layout.addWidget(label)
-
-        # self.setButtonText(wizard.NextButton, "Restart")
-        # wizard.button(QtWidgets.QWizard.NextButton).clicked.connect(self.restart_computer)
+        self.setButtonText(wizard.CancelButton, "Quit")
+        wizard.setButtonLayout([QtWidgets.QWizard.Stretch, QtWidgets.QWizard.CancelButton])
 
 
 #############################################################################
@@ -479,7 +480,7 @@ class ErrorPage(QtWidgets.QWizardPage, object):
         self.setTitle('Error')
         self.setSubTitle('The installation could not be performed.')
 
-        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/cross.png').scaledToHeight(128, QtCore.Qt.SmoothTransformation)
+        logo_pixmap = QtGui.QPixmap(os.path.dirname(__file__) + '/cross.png').scaledToHeight(160, QtCore.Qt.SmoothTransformation)
         logo_label = QtWidgets.QLabel()
         logo_label.setPixmap(logo_pixmap)
 
@@ -515,8 +516,6 @@ class ErrorPage(QtWidgets.QWizardPage, object):
 
 # TODO: Check prerequisites and inspect /mnt, go straight to error page if needed
 
-# language_page = LanguagePage() # Currently broken at least on KDE
-# wizard.addPage(language_page)
 intro_page = IntroPage()
 wizard.addPage(intro_page)
 disk_page = DiskPage()
