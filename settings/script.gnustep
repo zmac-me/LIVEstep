@@ -62,10 +62,11 @@ rm -rf $(basename "${REPO}")
 cd "${HERE}"
 
 # Autologin without a display manager
-chroot "${uzip}" echo 'al.liveuser:al=liveuser:tc=std.230400:' >> /etc/gettytab
-chroot "${uzip}" sed -i -e 's|^ttyv0.*$|ttyv0 "/usr/libexec/getty al.liveuser" xterm on secure|g' /etc/ttys
-chroot "${uzip}" rm /etc/ttys-e
-chroot "${uzip}" echo 'if $tty == ttyv0 startx' >> /usr/share/skel/dot.login 
+# Commented out because not working; using slim for now
+# chroot "${uzip}" echo 'al.liveuser:al=liveuser:tc=std.230400:' >> /etc/gettytab
+# chroot "${uzip}" sed -i -e 's|^ttyv0.*$|ttyv0 "/usr/libexec/getty al.liveuser" xterm on secure|g' /etc/ttys
+# chroot "${uzip}" rm /etc/ttys-e
+# chroot "${uzip}" echo 'if $tty == ttyv0 startx' >> /usr/share/skel/dot.login 
 
 # In the installed system:
 # cat > /.xinitrc <<\EOF
