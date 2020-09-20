@@ -165,6 +165,9 @@ fi
 if [ -f "/usr/local/bin/sddm" ] ; then
   chroot "${FSMNT}" sysrc sddm_enable="YES"
 fi
+if [ -f "/usr/local/bin/slim" ] ; then
+  chroot "${FSMNT}" sysrc slim_enable="YES"
+fi
 
 # Enable sshd if the user has requested it
 if [ "${INSTALLER_ENABLE_SSH}" = "YES" ] ; then
