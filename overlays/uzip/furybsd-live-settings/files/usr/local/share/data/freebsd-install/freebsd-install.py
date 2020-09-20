@@ -135,10 +135,8 @@ class InstallWizard(QtWidgets.QWizard, object):
         # Remove window decorations, especially the close button
         self.setWindowFlags(QtCore.Qt.CustomizeWindowHint)
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        # self.setPixmap(QtWidgets.QWizard.BackgroundPixmap, os.path.dirname(__file__) + '/Background.png') # This works in PySide2
-        pxmp = QtGui.QPixmap(os.path.dirname(__file__) + '/Background.png')
-        print("pxmp.height()", pxmp.height()) # FIXME: This shows that we have the pixmap loaded
-        self.setPixmap(QtWidgets.QWizard.WatermarkPixmap, pxmp) # FIXME: Why is this not working in PyQt5?
+
+        self.setPixmap(QtWidgets.QWizard.BackgroundPixmap, QtGui.QPixmap(os.path.dirname(__file__) + '/Background.png'))
 
         self.setOption(QtWidgets.QWizard.ExtendedWatermarkPixmap, True)
         # self.setPixmap(QtWidgets.QWizard.LogoPixmap, 'Logo.png')
@@ -203,7 +201,7 @@ class InstallWizard(QtWidgets.QWizard, object):
 
     def playSound(self):
         print("Playing sound")
-        soundfile = os.path.dirname(__file__) + '/success.mp3' # https://freesound.org/people/Leszek_Szary/sounds/171670/, licensed under CC0
+        soundfile = os.path.dirname(__file__) + '/success.ogg' # https://freesound.org/people/Leszek_Szary/sounds/171670/, licensed under CC0
         # content = QtMultimedia.QMediaContent(QtCore.QUrl.fromLocalFile(soundfile))
         # print(content.canonicalUrl())
         # player = QtMultimedia.QMediaPlayer()
@@ -211,7 +209,7 @@ class InstallWizard(QtWidgets.QWizard, object):
         # player.play() # FIXME: Why don't we hear anything?
 
         proc = QtCore.QProcess()
-        command = 'mpg123'
+        command = 'ogg123'
         args = ['-q', soundfile]
         print(command, args)
         try:
