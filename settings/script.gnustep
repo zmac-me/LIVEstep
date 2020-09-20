@@ -10,7 +10,7 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
-pkg install -y git gmake gnustep-make gnustep xcb-util xcb-util-wm
+pkg install -y git gmake gnustep-make gnustep xcb-util xcb-util-wm libXfixes cairo
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
