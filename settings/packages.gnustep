@@ -28,7 +28,7 @@ gmastermind
 gmines
 gnumail
 gnustep
-gnustep-app
+# gnustep-app
 gnustep-back
 gnustep-base
 gnustep-cdplayer
@@ -49,13 +49,13 @@ gskrab
 gspdf
 gtamsanalyzer
 gworkspace
-gworkspace-gwmetadata
+# gworkspace-gwmetadata
 helpviewer
 highlighterkit
 imageviewer
 innerspace
 jigsaw
-jishyo
+# jishyo
 lapispuzzle
 laternamagica
 latex-service
@@ -74,7 +74,7 @@ plopfolio
 poe
 popup
 preferences
-preview
+# preview
 price
 projectcenter
 remotedesk
@@ -92,7 +92,7 @@ systempreferences
 terminal.app
 timemon
 toolboxkit
-unarchiver
+# unarchiver
 waiho
 wizardkit
 zillion
