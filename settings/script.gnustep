@@ -10,7 +10,7 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
-pkg install -y git gmake gnustep-make gnustep xcb-util xcb-util-wm libXfixes cairo
+pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
@@ -26,9 +26,7 @@ for REPO in $REPOS ; do
   ls "${uzip}"
   DESTDIR="${uzip}" gmake install
   cd -
-  rm -rf $(basename "${REPO}")
 done
-
 
 REPO="AlessandroSangiuliano/rik.theme"
 git clone "https://github.com/${REPO}"
@@ -37,7 +35,6 @@ gmake
 ls "${uzip}"
 DESTDIR="${uzip}" gmake install
 cd -
-rm -rf $(basename "${REPO}")
 
 # Build dependency needed for uroswm
 REPO="AlessandroSangiuliano/XcbKit"
@@ -48,7 +45,6 @@ ls "${uzip}"
 gmake install # Install on the build system; this is needed for libraries
 DESTDIR="${uzip}" gmake install
 cd -
-rm -rf $(basename "${REPO}")
 
 REPO="AlessandroSangiuliano/uroswm"
 git clone "https://github.com/${REPO}"
@@ -57,7 +53,24 @@ gmake
 ls "${uzip}"
 DESTDIR="${uzip}" gmake install
 cd -
-rm -rf $(basename "${REPO}")
+
+# Build TextEdit
+# as it is missing from FreeBSD pkg; FIXME
+git clone https://github.com/ericwa/TextEdit
+cd TextEdit/
+gmake
+mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
+find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
+cd -
+
+# Build all applications for the GNUstep Applications project
+# as the ones in FreeBSD pkg are not complete; FIXME
+git clone https://github.com/gnustep/gap/
+cd gap/
+gmake
+mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
+find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
+cd -
 
 cd "${HERE}"
 
