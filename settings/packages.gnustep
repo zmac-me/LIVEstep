@@ -5,12 +5,12 @@ fluxbox
 slim
 # FIXME: How to do this properly:
 # wget https://www.freshports.org/gnustep/ -O - | grep "<big>" | cut -d ">" -f 4 | cut -d '"' -f 2 | cut -d "/" -f 3 |  sort | uniq
-aclock
-addresses
-addresses-goodies
+# aclock
+# addresses
+# addresses-goodies
 affiche
 appwrapper
-batmon
+# batmon
 biococoa
 camera
 camerakit
@@ -26,8 +26,8 @@ fortunate
 fortytwo
 fortytwo-bdb
 fortytwo-encore
-gmastermind
-gmines
+# gmastermind
+# gmines
 gnumail
 gnustep
 # gnustep-app
@@ -42,11 +42,11 @@ gnustep-sudoku
 gnustep-wrapper
 gomoku
 gorm
-graphos
+# graphos
 grr
 grubik
 gscheme
-gshisen
+# gshisen
 gskrab
 gspdf
 gtamsanalyzer
@@ -55,18 +55,18 @@ gworkspace
 helpviewer
 highlighterkit
 imageviewer
-innerspace
-jigsaw
+# innerspace
+# jigsaw
 # jishyo
-lapispuzzle
-laternamagica
+# lapispuzzle
+# laternamagica
 latex-service
 libobjc2
 localize
 lusernet
 mpdcon
-nextgo
-oolite
+# nextgo
+# oolite
 paje
 pantomime
 performance
@@ -79,7 +79,7 @@ preferences
 # preview
 price
 projectcenter
-remotedesk
+# remotedesk
 rsskit
 simpleagenda
 sogo2
@@ -89,13 +89,13 @@ sogo4-activesync
 sope2
 sope4
 sqlclient
-stepsync
+# stepsync
 systempreferences
-terminal.app
+# terminal.app
 timemon
 toolboxkit
 # unarchiver
 waiho
 wizardkit
 zillion
-zipper
+# zipper
