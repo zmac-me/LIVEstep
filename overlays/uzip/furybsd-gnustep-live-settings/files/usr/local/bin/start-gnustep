@@ -27,6 +27,10 @@ mount | grep  /System || sudo mount -t nullfs /usr/local/GNUstep/System /System
 mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
 mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
 
+# Enable single click for the Dock; needs patched GWorkspace from
+# https://github.com/BertrandDekoninck/gworkspace
+defaults write GWorkspace dockclickpolicy 1
+
 # Drop shadows
 compton &
 
