@@ -18,24 +18,16 @@ defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
 defaults write NSGlobalDomain NSFont "Luxi Sans"
 defaults write NSGlobalDomain NSBoldFont "Luxi Sans"
 defaults write NSGlobalDomain NSUserFont "Luxi Sans"
-defaults write NSGlobalDomain NSFontSize "12"
+defaults write NSGlobalDomain NSFontSize "13"
 
 # Courtesy mounts
 sudo mkdir -p /Library /System /Users /Volumes
-mount | grep  /Library || sudo mount -t nullfs /usr/local/GNUstep/Library /Library
+mount | grep  /Local || sudo mount -t nullfs /usr/local/GNUstep/Local /Local
 mount | grep  /System || sudo mount -t nullfs /usr/local/GNUstep/System /System
 mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
 mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
 
-# As long as we use Fluxbox, hide its toolbar
-# FIXME: Remove the need for Fluxbox
-mkdir -p ~/.fluxbox/
-cat > ~/.fluxbox/init <<\EOF
-session.screen0.toolbar.tools:  prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar            
-session.screen0.toolbar.autoHide:       false
-session.screen0.toolbar.visible:        false
-EOF
-
+# Drop shadows
 compton &
 
 # Show a global menu while a non-GS application is foremost
@@ -44,8 +36,15 @@ openapp TopBar &
 openapp GWorkspace &
 
 # Does not work properly yet, still in early development
-#uroswm
+# uroswm
 
 # Hence using Fluxbox for now; FIXME: Find something more suitable
+# As long as we use Fluxbox, at least hide its toolbar
+# FIXME: Remove the need for Fluxbox
+mkdir -p ~/.fluxbox/
+cat > ~/.fluxbox/init <<\EOF
+session.screen0.toolbar.tools:  prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar            
+session.screen0.toolbar.autoHide:       false
+session.screen0.toolbar.visible:        false
+EOF
 fluxbox
-
