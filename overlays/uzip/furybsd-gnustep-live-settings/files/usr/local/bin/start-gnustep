@@ -21,7 +21,7 @@ defaults write NSGlobalDomain NSUserFont "Luxi Sans"
 defaults write NSGlobalDomain NSFontSize "13"
 
 # Courtesy mounts
-sudo mkdir -p /Library /System /Users /Volumes
+sudo mkdir -p /Local /System /Users /Volumes
 mount | grep  /Local || sudo mount -t nullfs /usr/local/GNUstep/Local /Local
 mount | grep  /System || sudo mount -t nullfs /usr/local/GNUstep/System /System
 mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
