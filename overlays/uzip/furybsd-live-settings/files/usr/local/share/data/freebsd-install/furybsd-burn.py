@@ -100,7 +100,7 @@ class InstallWizard(QtWidgets.QWizard, object):
         self.error_message_nice = "An unknown error occured."
 
         self.setWizardStyle(QtWidgets.QWizard.MacStyle)
-        # self.setPixmap(QtWidgets.QWizard.BackgroundPixmap, QtGui.QPixmap(os.path.dirname(__file__) + '/Background.png'))
+        self.setPixmap(QtWidgets.QWizard.BackgroundPixmap, QtGui.QPixmap(os.path.dirname(__file__) + '/bgusb.png'))
 
         self.setWindowTitle("Create FuryBSD Live Media")
         self.setFixedSize(600, 400)
@@ -355,6 +355,9 @@ class DiskPage(QtWidgets.QWizardPage, object):
 
         selected_disk_device = None
         return False
+
+    def cleanupPage(self):
+        self.timer.stop()
 
 #############################################################################
 # Installation page
