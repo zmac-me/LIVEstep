@@ -61,10 +61,13 @@ openapp GWorkspace &
 # Hence using Fluxbox for now; FIXME: Find something more suitable
 # As long as we use Fluxbox, at least hide its toolbar
 # FIXME: Remove the need for Fluxbox
-mkdir -p ~/.fluxbox/
-cat > ~/.fluxbox/init <<\EOF
-session.screen0.toolbar.tools:  prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar            
-session.screen0.toolbar.autoHide:       false
-session.screen0.toolbar.visible:        false
-EOF
-fluxbox
+# mkdir -p ~/.fluxbox/
+# cat > ~/.fluxbox/init <<\EOF
+# session.screen0.toolbar.tools:  prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar            
+# session.screen0.toolbar.autoHide:       false
+# session.screen0.toolbar.visible:        false
+# EOF
+# fluxbox
+
+# TODO: Replace with something more suitable
+wmaker --dont-restore --no-autolaunch --no-clip --no-dock --no-drawer --replace --static
