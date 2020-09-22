@@ -29,13 +29,23 @@ mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
 
 # Enable single click for the Dock; needs patched GWorkspace from
 # https://github.com/BertrandDekoninck/gworkspace
+# FIXME: Does not work
 defaults write GWorkspace dockclickpolicy 1
 
 # Use Terminal.app
 defaults write GWorkspace terminal_services YES
 
+# Terminal black text on white background
+defaults write Terminal BlackOnWhite YES
+ 
 # Bring Dock to the left
 defaults write GWorkspace dockposition 0
+
+# Put applications into Dock
+defaults write GWorkspace applications '{ 1 = TextEdit; 2 = Terminal; 3 = SimpleAgenda; 4 = GNUMail; 5 = Gorm; 6 = ProjectCenter; }'
+
+# Set wallpaper color to blue
+defaults write GWorkspace desktopinfo '{ backcolor = { alpha = 1; blue = "0.7"; green = "0.5"; red = "0.3"; }; "fsn_info_type" = 0; iconposition = 5; iconsize = 48; imagestyle = 0; indexes = { }; labeltxtsize = 12; usebackimage = 0;}'
 
 # Drop shadows
 compton &
