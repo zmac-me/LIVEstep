@@ -90,6 +90,9 @@ mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
 find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
 cd -
 
+# Use Terminal.app from pkg
+rm -rf "${uzip}/usr/local/GNUstep/Local/Applications/Terminal.app"
+
 cd "${HERE}"
 
 # Autologin without a display manager
