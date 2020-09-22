@@ -40,6 +40,7 @@ cd -
 REPO="AlessandroSangiuliano/XcbKit"
 git clone "https://github.com/${REPO}"
 cd $(basename "${REPO}")/XCBKit # sic!
+git checkout feature/gnustep_support
 gmake
 ls "${uzip}"
 gmake install # Install on the build system; this is needed for libraries
@@ -49,6 +50,7 @@ cd -
 REPO="AlessandroSangiuliano/uroswm"
 git clone "https://github.com/${REPO}"
 cd $(basename "${REPO}")/$(basename "${REPO}")
+git checkout develop
 gmake
 ls "${uzip}"
 DESTDIR="${uzip}" gmake install
