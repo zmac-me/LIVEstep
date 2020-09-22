@@ -1,6 +1,6 @@
-# WindowMaker and GWorkspace seem to be redundant
-# So we use fluxbox for now
-fluxbox
+windowmaker
+# WindowMaker and GWorkspace seem to be redundant, so I consider WindowMaker a temporary solution to be replaced soon
+# fluxbox
 # Use slim until we find something using AppKit
 slim
 compton
