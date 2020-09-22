@@ -92,7 +92,7 @@ sope4
 sqlclient
 # stepsync
 systempreferences
-terminal.app
+# terminal.app
 timemon
 toolboxkit
 # unarchiver
