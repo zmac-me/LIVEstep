@@ -10,7 +10,7 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
-pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo
+pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
@@ -63,6 +63,15 @@ cd TextEdit/
 gmake
 DESTDIR="${uzip}" gmake install
 cd -
+
+# Replace TextEdit icon
+pkg install wget librsvg2
+curl https://raw.githubusercontent.com/zayronxio/Mojave-CT/master/apps/128/accessories-text-editor.svg > "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.svg
+sed -i -e 's|.icns|.png|g' "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/Info-gnustep.plist
+sed -i -e 's|.icns|.png|g' "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/TextEdit.desktop
+rm  "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.icns
+rm  "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/*-e 
+rsvg-convert -a -w 48 -h 48 "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.svg -o "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.png
 
 # Build all applications for the GNUstep Applications project
 # as the ones in FreeBSD pkg are not complete; FIXME
