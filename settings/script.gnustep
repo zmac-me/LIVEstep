@@ -61,8 +61,7 @@ cd -
 git clone https://github.com/ericwa/TextEdit
 cd TextEdit/
 gmake
-mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
-find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
+DESTDIR="${uzip}" gmake install
 cd -
 
 # Build all applications for the GNUstep Applications project
@@ -70,8 +69,7 @@ cd -
 git clone https://github.com/gnustep/gap/
 cd gap/
 gmake
-mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
-find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
+DESTDIR="${uzip}" gmake install
 cd -
 
 # Modified GWorkspace by https://github.com/BertrandDekoninck, see
@@ -86,12 +84,8 @@ cd gworkspace
 # in which XDG desktop files can reside
 rm -rf Apps_wrappers/*.app
 gmake
-mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
-find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
+DESTDIR="${uzip}" gmake install
 cd -
-
-# Use Terminal.app from pkg
-rm -rf "${uzip}/usr/local/GNUstep/Local/Applications/Terminal.app"
 
 cd "${HERE}"
 
