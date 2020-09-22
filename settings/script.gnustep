@@ -77,9 +77,14 @@ cd -
 # Modified GWorkspace by https://github.com/BertrandDekoninck, see
 # https://github.com/BertrandDekoninck/WindowMaker-session
 # White labels for icons on the desktop and a singleclick setting for the dock.
-# To enabloe single click, type 'defaults write GWorkspace dockclickpolicy 1'.
+# To enable single click, type 'defaults write GWorkspace dockclickpolicy 1'.
 # TODO: Make use of "Volume checking and unmounting"
 git clone https://github.com/BertrandDekoninck/gworkspace
+cd gworkspace
+# Remove all wrappers for applications we don't ship
+# TODO: Dynamically generate wrappers by watching the directories
+# in which XDG desktop files can reside
+rm -rf Apps_wrappers/*.app
 gmake
 mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/"
 find . -name '*.app' -exec mv {} "${uzip}/usr/local/GNUstep/Local/Applications/" \;
