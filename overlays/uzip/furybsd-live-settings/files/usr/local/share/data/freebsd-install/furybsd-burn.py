@@ -174,6 +174,12 @@ class IntroPage(QtWidgets.QWizardPage, object):
         self.disk_vlayout.addWidget(self.release_listwidget)
         self.release_listwidget.itemSelectionChanged.connect(self.onSelectionChanged)
 
+        # Date label
+        self.date_label = QtWidgets.QLabel()
+        self.date_label.setText("Date")
+        self.date_label.hide()
+        self.disk_vlayout.addWidget(self.date_label)
+
     def initializePage(self):
         print("Displaying IntroPage")
         self.populateImageList()
@@ -200,11 +206,11 @@ class IntroPage(QtWidgets.QWizardPage, object):
                     if len(release["assets"]) > 2:
                         for asset in release["assets"]:
                             if asset["browser_download_url"].endswith(".iso"):
-                                display_name = "%s (%s release)" % (asset["browser_download_url"].split("/")[8], release["tag_name"])
-                                self.available_isos.append({"name": display_name, "url": asset["browser_download_url"]})
+                                display_name = "%s (%s)" % (asset["name"], release["tag_name"])
+                                self.available_isos.append(asset)
                                 self.release_listwidget.addItem(display_name)
         except:
-            wizard.showErrorPage("The list of available images could not be retrieved.")
+            wizard.showErrorPage("The list of available images could not be retrieved. GitHub rate limit exceeded?")
             self.label.hide()  # FIXME: Why is this needed? Can we do without?
             self.repo_menu.hide()  # FIXME: Why is this needed? Can we do without?
             self.release_listwidget.hide()  # FIXME: Why is this needed? Can we do without?
@@ -213,13 +219,18 @@ class IntroPage(QtWidgets.QWizardPage, object):
 
     def onSelectionChanged(self):
         print("onSelectionChanged")
-        print("selectedIndexes", self.release_listwidget.selectedIndexes())
+        # print("selectedIndexes", self.release_listwidget.selectedIndexes())
         items = self.release_listwidget.selectedItems()
         # print(items[0].text())
         for available_iso in self.available_isos:
-            if available_iso["name"] == items[0].text():
-                wizard.selected_iso_url = available_iso["url"]
-                print("Selected ISO:", wizard.selected_iso_url)
+            # print(available_iso["browser_download_url"].split("/")[8])
+            if items[0].text().startswith(available_iso["name"]):
+                wizard.selected_iso_url = available_iso["browser_download_url"]
+                print("Selected ISO:", available_iso)
+                date = QtCore.QDateTime.fromString(available_iso["updated_at"], "yyyy-MM-ddThh:mm:ssZ")
+                self.date_label.setText(date.toLocalTime().toString(QtCore.Qt.SystemLocaleLongDate))
+                self.date_label.show()
+                wizard.required_mib_on_disk = round(int(available_iso["size"])/1000/1000, 1)
                 # self.isComplete()  # Calling it like this does not make its result get used
                 self.completeChanged.emit()  # But like this isComplete() gets called and its result gets used
 
@@ -254,14 +265,9 @@ class DiskPage(QtWidgets.QWizardPage, object):
         self.label = QtWidgets.QLabel()
         disk_vlayout.addWidget(self.label)
 
-    def getMiBRequiredOnDisk(self):
-        print("getMiBRequiredOnDisk: To be implemented")
-        return 1024*2
-
     def initializePage(self):
         print("Displaying DiskPage")
 
-        wizard.required_mib_on_disk = self.getMiBRequiredOnDisk()
         self.disk_listwidget.clearSelection() # If the user clicked back and forth, start with nothing selected
         self.periodically_list_disks()
 
