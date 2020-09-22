@@ -31,6 +31,12 @@ mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
 # https://github.com/BertrandDekoninck/gworkspace
 defaults write GWorkspace dockclickpolicy 1
 
+# Use Terminal.app
+defaults write GWorkspace terminal_services YES
+
+# Bring Dock to the left
+defaults write GWorkspace dockposition 0
+
 # Drop shadows
 compton &
 
