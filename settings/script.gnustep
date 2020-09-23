@@ -92,6 +92,7 @@ cd gworkspace
 # TODO: Dynamically generate wrappers by watching the directories
 # in which XDG desktop files can reside
 rm -rf Apps_wrappers/*.app
+./configure
 gmake
 DESTDIR="${uzip}" gmake install
 cd -
