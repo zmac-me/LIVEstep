@@ -5,7 +5,7 @@
 # This works
 defaults write NSGlobalDomain GSTheme Rik
 
-# Does this do anything?
+# Enable global menu bar
 defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
 
 # Does this do anything?
@@ -29,7 +29,6 @@ mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
 
 # Enable single click for the Dock; needs patched GWorkspace from
 # https://github.com/BertrandDekoninck/gworkspace
-# FIXME: Does not work
 defaults write GWorkspace dockclickpolicy 1
 
 # Use Terminal.app
@@ -61,16 +60,5 @@ openapp GWorkspace &
 # Does not work properly yet, still in early development
 # uroswm
 
-# Hence using Fluxbox for now; FIXME: Find something more suitable
-# As long as we use Fluxbox, at least hide its toolbar
-# FIXME: Remove the need for Fluxbox
-# mkdir -p ~/.fluxbox/
-# cat > ~/.fluxbox/init <<\EOF
-# session.screen0.toolbar.tools:  prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar            
-# session.screen0.toolbar.autoHide:       false
-# session.screen0.toolbar.visible:        false
-# EOF
-# fluxbox
-
-# TODO: Replace with something more suitable
+# TODO: Replace Window Maker with something more suitable
 wmaker --dont-restore --no-autolaunch --no-clip --no-dock --no-drawer --replace --static
