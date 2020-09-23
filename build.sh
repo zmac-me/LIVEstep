@@ -71,21 +71,6 @@ isopath="${iso}/${vol}-${arch}.iso"
 
 workspace()
 {
-  umount ${uzip}/var/cache/pkg >/dev/null 2>/dev/null || true
-  umount ${ports} >/dev/null 2>/dev/null || true
-  rm -rf ${ports} >/dev/null 2>/dev/null || true
-  umount ${cache}/furybsd-packages/ >/dev/null 2>/dev/null || true
-  rm ${cache}/master.zip >/dev/null 2>/dev/null || true
-  umount ${uzip}/dev >/dev/null 2>/dev/null || true
-  zpool destroy furybsd >/dev/null 2>/dev/null || true
-  mdconfig -d -u 0 >/dev/null 2>/dev/null || true
-  if [ -f "${livecd}/pool.img" ] ; then
-    rm ${livecd}/pool.img
-  fi
-  if [ -d "${livecd}" ] ;then
-    # chflags -R noschg ${uzip} ${cdroot} >/dev/null 2>/dev/null || true
-    rm -rf ${uzip} ${cdroot} ${ports} >/dev/null 2>/dev/null || true
-  fi
   mkdir -p "${livecd}" "${base}" "${iso}" "${packages}" "${uzip}" "${ramdisk_root}/dev" "${ramdisk_root}/etc" >/dev/null 2>/dev/null
   truncate -s 3g "${livecd}/pool.img"
   mdconfig -f "${livecd}/pool.img" -u 0
@@ -234,21 +219,18 @@ tree()
 uzip() 
 {
   install -o root -g wheel -m 755 -d "${cdroot}"
-  # makefs "${cdroot}/data/system.ufs" "${uzip}"
-  zpool export furybsd
-  mkuzip -o "${cdroot}/data/system.uzip" "${livecd}/pool.img"
-  zpool import furybsd
-  zfs set mountpoint=/usr/local/furybsd/uzip furybsd
+  cd ${cwd} && zpool export furybsd && mkuzip -o "${cdroot}/data/system.uzip" "${livecd}/pool.img"
 }
 
 ramdisk() 
 {
   cp -R "${cwd}/overlays/ramdisk/" "${ramdisk_root}"
+  cd ${cwd} && zpool import furybsd && zfs set mountpoint=/usr/local/furybsd/uzip furybsd 
   cd "${uzip}" && tar -cf - rescue | tar -xf - -C "${ramdisk_root}"
   touch "${ramdisk_root}/etc/fstab"
   cp ${uzip}/etc/login.conf ${ramdisk_root}/etc/login.conf
   makefs -b '10%' "${cdroot}/data/ramdisk.ufs" "${ramdisk_root}"
-  gzip "${cdroot}/data/ramdisk.ufs"
+  gzip -f "${cdroot}/data/ramdisk.ufs"
   rm -rf "${ramdisk_root}"
 }
 
@@ -262,6 +244,7 @@ image()
 {
   sh "${cwd}/scripts/mkisoimages-${arch}.sh" -b "${label}" "${isopath}" "${cdroot}"
   md5 "${isopath}" > "${isopath}.md5"
+  echo "$isopath created"
 }
 
 cleanup()
