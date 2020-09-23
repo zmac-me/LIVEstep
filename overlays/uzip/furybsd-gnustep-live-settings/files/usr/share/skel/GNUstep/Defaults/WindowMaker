@@ -1,6 +1,6 @@
 {
   FrameBorderColor = "#000000";
-  FTitleColor = "#e1e1e1";
+  FTitleColor = "#000000";
   WindowTitleBalloons = NO;
   MenuDisabledColor = "#7f7f7f";
   CycleIgnoreMinimized = NO;
