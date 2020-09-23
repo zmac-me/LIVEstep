@@ -100,3 +100,5 @@ waiho
 wizardkit
 zillion
 # zipper
+# gmake is needed to build anything GNUstep, so we should bundle it
+gmake
