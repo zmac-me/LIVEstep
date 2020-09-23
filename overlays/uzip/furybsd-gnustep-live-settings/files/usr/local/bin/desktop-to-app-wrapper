@@ -167,8 +167,12 @@ def directory_changed(path):
     current_desktop_files_in_system = get_desktop_files_in_system()
     for df in current_desktop_files_in_system:
         if not df in handled_desktop_files_in_system:
-            # print("%s has not been handled yet" % df)
-            d2a(df, "/tmp")
+            print("Creating .app wrapper for '%s'" % df)
+            d2a(df, "/usr/local/GNUstep/Local/Applications")
+            try:
+                subprocess.call(["/usr/local/GNUstep/System/Tools/make_services"])
+            except:
+                print("Could not run make_services, is GNUstep installed?")
             handled_desktop_files_in_system.append(df)
 
 def get_desktop_files_in_system():
