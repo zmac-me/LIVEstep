@@ -102,3 +102,5 @@ zillion
 # zipper
 # gmake is needed to build anything GNUstep, so we should bundle it
 gmake
+# py37-xdg is needed by desktop-to-app-wrapper
+py37-xdg
