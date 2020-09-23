@@ -35,11 +35,11 @@ gnustep
 gnustep-back
 gnustep-base
 gnustep-cdplayer
-gnustep-ftp
+# gnustep-ftp
 gnustep-gui
-gnustep-ladder
+# gnustep-ladder
 gnustep-make
-gnustep-sudoku
+# gnustep-sudoku
 gnustep-wrapper
 gomoku
 gorm
@@ -93,7 +93,7 @@ sqlclient
 # stepsync
 systempreferences
 # terminal.app
-timemon
+# timemon
 toolboxkit
 # unarchiver
 waiho
