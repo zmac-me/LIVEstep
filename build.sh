@@ -263,9 +263,9 @@ pkg
 base
 packages
 rc
+script
 user
 dm
-script
 tree
 uzip
 ramdisk
