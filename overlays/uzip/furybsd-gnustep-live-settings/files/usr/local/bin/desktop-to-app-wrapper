@@ -218,13 +218,13 @@ if __name__ == "__main__":
         try:
             from PyQt5 import QtCore
         except:
-            "Cannot watch the system for newly installed applications since PyQt5 is missing."
+            print("Cannot watch the system for newly installed applications since PyQt5 is missing.")
             exit(1)
 
         try:
             import psutil
         except:
-            "Cannot watch the system for newly installed applications since py37-psutil is missing."
+            print("Cannot watch the system for newly installed applications since py37-psutil is missing.")
             exit(1)
 
         signal.signal(signal.SIGINT, QtCore.QCoreApplication.quit) # FIXME: Make Ctrl-C work; Does not seem to work
