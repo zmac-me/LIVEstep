@@ -53,6 +53,9 @@ compton &
 # Show a global menu while a non-GS application is foremost
 openapp TopBar &
 
+# Create .app wrappers for newly installed XDG applications
+sudo desktop-to-app-wrapper &
+
 openapp GWorkspace &
 
 # Does not work properly yet, still in early development
