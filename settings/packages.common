@@ -39,3 +39,4 @@ iichid
 avahi-app
 nss_mdns
 openntpd
+fusefs-libs
