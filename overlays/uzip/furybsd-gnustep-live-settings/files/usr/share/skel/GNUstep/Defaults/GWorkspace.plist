@@ -2,34 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>34485052008_viewer_at_/</key>
-    <dict>
-	<key>fsn_info_type</key>
-	<integer>0</integer>
-	<key>geometry</key>
-	<string>153 241 642 350 0 0  1920 1056 </string>
-	<key>lastselection</key>
-	<array>
-	    <string>/</string>
-	</array>
-	<key>shelfdicts</key>
-	<array>
-	    <dict>
-		<key>index</key>
-		<integer>0</integer>
-		<key>paths</key>
-		<array>
-		    <string>/home/liveuser</string>
-		</array>
-	    </dict>
-	</array>
-	<key>shelfheight</key>
-	<real>77</real>
-	<key>singlenode</key>
-	<false/>
-	<key>viewtype</key>
-	<string>Browser</string>
-    </dict>
     <key>DesktopApplicationName</key>
     <string>GWorkspace</string>
     <key>DesktopApplicationSelName</key>
@@ -107,26 +79,6 @@
     <string>1</string>
     <key>dockposition</key>
     <string>0</string>
-    <key>root_viewer</key>
-    <dict>
-	<key>fsn_info_type</key>
-	<integer>0</integer>
-	<key>geometry</key>
-	<string>53 341 1070 685 0 0  1920 1056 </string>
-	<key>lastselection</key>
-	<array>
-	    <string>/System</string>
-	</array>
-	<key>shelfdicts</key>
-	<array>
-	</array>
-	<key>shelfheight</key>
-	<real>2</real>
-	<key>singlenode</key>
-	<false/>
-	<key>viewtype</key>
-	<string>Browser</string>
-    </dict>
     <key>tabshelf</key>
     <dict>
 	<key>auto_hide</key>
@@ -169,21 +121,5 @@
     <string>YES</string>
     <key>use_thumbnails</key>
     <string>NO</string>
-    <key>viewer_at_/</key>
-    <dict>
-	<key>fsn_info_type</key>
-	<integer>0</integer>
-    </dict>
-    <key>viewer_at_/System</key>
-    <dict>
-	<key>fsn_info_type</key>
-	<integer>0</integer>
-	<key>iconposition</key>
-	<integer>5</integer>
-	<key>iconsize</key>
-	<integer>48</integer>
-	<key>labeltxtsize</key>
-	<integer>12</integer>
-    </dict>
 </dict>
 </plist>
