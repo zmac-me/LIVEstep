@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>BlackOnWhite</key>
-    <string>NO</string>
+    <string>YES</string>
     <key>BoldTerminalFont</key>
     <string>DejaVu Sans Mono</string>
     <key>BoldTerminalFontSize</key>
