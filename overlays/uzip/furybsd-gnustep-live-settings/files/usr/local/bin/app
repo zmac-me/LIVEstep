@@ -145,17 +145,20 @@ def d2a(desktopfile, destination):
 
 
 # Something better than the following is needed; ideally something that does not
-# require root rights. Are there per-process namespaces in FreeBSD?
+# require root rights. Are there per-process namespaces in FreeBSD? Can we use Jails?
 
 HERE="$(dirname "$(readlink -f "${0}")")"
+if [ -z "${XDG_RUNTIME_DIR}" ] ; then
+  XDG_RUNTIME_DIR=/var/run/user/$(id -u)
+fi
 THERE=$(mktemp -d "${XDG_RUNTIME_DIR}/XXXXXXXX")
 CHROOT="${THERE}/chroot"
 
 # The finish function runs whenever this script exits
 finish()
 {
-  umount -f "${CHROOT}/tmp"
-  umount -f "${THERE}"/*
+  sudo umount -f "${CHROOT}/tmp"
+  sudo umount -f "${THERE}"/*
   rm -r "${THERE}"
   sleep 1
 }
@@ -164,7 +167,7 @@ trap finish EXIT
 mkdir -p "${CHROOT}"
 "${HERE}/Resources/Root/usr/local/bin/unionfs" -o ro,allow_root "/:${HERE}/Resources/Root" "${CHROOT}"
 sudo mount_nullfs /tmp "${CHROOT}/tmp" # for /tmp/.X11-unix
-sudo chroot "${CHROOT}" "xvier" "$@"
+sudo chroot -u "${USER}" "${CHROOT}" "%EXEC%" "$@"
 """
 
     launcher_path = ("%s/%s.app/%s" % (destination, name, name))
