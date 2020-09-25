@@ -166,7 +166,7 @@ finish()
 trap finish EXIT
 
 mkdir -p "${CHROOT}"
-"${HERE}/Resources/Root/usr/local/bin/unionfs" -o ro,allow_other "/:${HERE}/Resources/Root" "${CHROOT}"
+sudo "${HERE}/Resources/Root/usr/local/bin/unionfs" -o ro,allow_other "/:${HERE}/Resources/Root" "${CHROOT}" # Why is sudo needed here?
 sudo mount_nullfs /tmp "${CHROOT}/tmp" # for /tmp/.X11-unix
 sudo chroot -u "${USER}" "${CHROOT}" "%EXEC%" "$@"
 """
