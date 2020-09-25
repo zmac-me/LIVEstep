@@ -102,6 +102,7 @@ cd "${HERE}"
 # Turn XDG desktop files into something GWorkspace understands
 chroot "${uzip}" find /usr/share/skel/Desktop/ -name '*.desktop' -exec desktop-to-app-wrapper {} /usr/share/skel/Desktop/ \;
 chroot "${uzip}" find /usr/share/skel/Desktop/ -name '*.desktop' -delete
+rm -rf "${uzip}"/*.core
 
 # Autologin without a display manager
 # Commented out because not working; using slim for now
