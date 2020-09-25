@@ -123,6 +123,9 @@ rm "${uzip}/usr/local/etc/rc.d/avahi-daemon-e" || true
 sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient NETWORKING syslogd|g' "${uzip}/etc/rc.d/ntpdate"
 rm "${uzip}/etc/rc.d/ntpdate-e" || true
 
+# Not every about box of every application GNUstep branded
+rm -f "${uzip}"/usr/local/GNUstep/System/Library/Images/LogoGNUstep.tiff
+
 # Autologin without a display manager
 # Commented out because not working; using slim for now
 # chroot "${uzip}" echo 'al.liveuser:al=liveuser:tc=std.230400:' >> /etc/gettytab
