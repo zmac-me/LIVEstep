@@ -102,7 +102,8 @@ wget http://download-mirror.savannah.gnu.org/releases/gnustep-nonfsf/Highlighter
 tar xf HighlighterKit-0.1.3.tar.gz
 cd ./HighlighterKit-*/
 gmake
-cp -r ./HighlighterKit.framework "${uzip}/usr/local/GNUstep/Local/Library/Frameworks/" # FIXME: 'gmake install' fails
+cp -r ./HighlighterKit.framework "/usr/local/GNUstep/Local/Library/Frameworks/" # FIXME: 'gmake install' fails; install to local system
+cp -r ./HighlighterKit.framework "${uzip}/usr/local/GNUstep/Local/Library/Frameworks/" # FIXME: 'gmake install' fails; install to target system
 cd -
 wget http://download-mirror.savannah.gnu.org/releases/gnustep-nonfsf/Gemas-0.4.tar.gz
 tar xf Gemas-0.4.tar.gz
