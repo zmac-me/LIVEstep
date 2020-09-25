@@ -14,6 +14,9 @@ defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES # https://github
 # Do not show hidden files in GWorkspace
 defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
 
+# Enable GSPdf
+defaults write GSPdf GhostScriptPath /usr/local/bin/gs
+
 # Fonts
 defaults write NSGlobalDomain NSFont "Luxi Sans"
 defaults write NSGlobalDomain NSBoldFont "Luxi Sans"
