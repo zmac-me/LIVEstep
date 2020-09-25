@@ -104,6 +104,12 @@ chroot "${uzip}" find /usr/share/skel/Desktop/ -name '*.desktop' -exec desktop2a
 chroot "${uzip}" find /usr/share/skel/Desktop/ -name '*.desktop' -delete
 rm -rf "${uzip}"/*.core
 
+# Try to fix rc order issue; TODO: if this works then this probably needs to be put into build.sh
+sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient DAEMON dbus|g' "${uzip}/usr/local/etc/rc.d/avahi-daemon"
+rm "${uzip}/usr/local/etc/rc.d/avahi-daemon-e" || true
+sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient NETWORKING syslogd|g' "${uzip}/etc/rc.d/ntpdate"
+rm "${uzip}/etc/rc.d/ntpdate-e" || true
+
 # Autologin without a display manager
 # Commented out because not working; using slim for now
 # chroot "${uzip}" echo 'al.liveuser:al=liveuser:tc=std.230400:' >> /etc/gettytab
