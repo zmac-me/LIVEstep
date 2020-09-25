@@ -173,16 +173,36 @@ CHROOT="${THERE}/chroot"
 # The finish function runs whenever this script exits
 finish()
 {
+  sudo umount -f "${CHROOT}/bin"
+  sudo umount -f "${CHROOT}/var"
+  sudo umount -f "${CHROOT}/home"
   sudo umount -f "${CHROOT}/tmp"
-  sudo umount -f "${THERE}"/*
+  sudo umount -f "${CHROOT}/lib"
+  sudo umount -f "${CHROOT}/usr"
+  sudo umount -f "${CHROOT}/etc"
+  sudo umount -f "${CHROOT}/libexec"
   rm -r "${THERE}"
   sleep 1
 }
 trap finish EXIT
 
-mkdir -p "${CHROOT}"
-sudo "${HERE}/Resources/Root/usr/local/bin/unionfs" -o ro,allow_other "/:${HERE}/Resources/Root" "${CHROOT}" # Why is sudo needed here?
+mkdir -p "${CHROOT}/bin"
+mkdir -p "${CHROOT}/var"
+mkdir -p "${CHROOT}/home"
+mkdir -p "${CHROOT}/tmp"
+mkdir -p "${CHROOT}/lib"
+mkdir -p "${CHROOT}/usr"
+mkdir -p "${CHROOT}/etc"
+mkdir -p "${CHROOT}/libexec"
+sudo mount -t nullfs /bin "${CHROOT}/bin"
+sudo mount -t nullfs /bin "${CHROOT}/var"
+sudo mount -t nullfs /home "${CHROOT}/home"
 sudo mount_nullfs /tmp "${CHROOT}/tmp" # for /tmp/.X11-unix
+sudo mount -t nullfs /lib "${CHROOT}/lib"
+sudo mount -t nullfs /etc "${CHROOT}/etc"
+sudo mount -t nullfs /libexec "${CHROOT}/libexec"
+sudo "${HERE}/Resources/Root/usr/local/bin/unionfs" -o ro,allow_other "/usr:${HERE}/Resources/Root/usr" "${CHROOT}/usr" # Why is sudo needed here?
+# Why does it need: export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/nvidia/440/usr/local/lib/
 sudo chroot -u "${USER}" "${CHROOT}" "%EXEC%" "$@"
 """
 
