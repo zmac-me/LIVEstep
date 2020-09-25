@@ -143,6 +143,7 @@ def d2a(desktopfile, destination):
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+set -e # Exit on errors
 
 # Something better than the following is needed; ideally something that does not
 # require root rights. Are there per-process namespaces in FreeBSD? Can we use Jails?
