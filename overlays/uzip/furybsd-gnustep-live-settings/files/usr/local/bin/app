@@ -53,6 +53,7 @@ def d2a(desktopfile, destination):
         return None
     if "Exec" in i.content["Desktop Entry"].keys():
         exec = i.content["Desktop Entry"]["Exec"]
+        exec = exec.replace(" %f", "").replace(" %F", "").replace(" %u", "").replace(" %U", "")
     else:
         print("No Exec=..., hence skipping '%s'" % desktopfile)
         return None
@@ -67,6 +68,20 @@ def d2a(desktopfile, destination):
         return None
     iconfile = IconTheme.getIconPath(icon, size=48, extensions=['png'])
     svgiconfile = IconTheme.getIconPath(icon, size=48, extensions=['svg'])
+
+    # What we have got may be symlinks. Example: firefox pkg.
+    # Those may point to /usr/local/..., hence we need to prefix them
+    # Borrowed from https://github.com/pypa/virtualenv/commit/04ce79630d6aa1df87a6bb44a550353c1961953e
+
+    if iconfile != None:
+        while os.path.islink(iconfile):
+            iconfile = os.path.join(os.path.dirname(iconfile), os.readlink(iconfile))
+        iconfile = os.path.abspath(iconfile)
+
+    if svgiconfile != None:
+        while os.path.islink(svgiconfile):
+            svgiconfile = os.path.join(os.path.dirname(svgiconfile), os.readlink(svgiconfile))
+        svgiconfile = os.path.abspath(svgiconfile)
 
     if svgiconfile == None and (iconfile == None or os.path.exists(iconfile) == False):
 
@@ -226,7 +241,7 @@ if __name__ == "__main__":
         try:
             # Without sudo, getting:
             # pkg: Insufficient privileges to access repo catalogue. Why?
-            subprocess.call(["sudo", "pkg", "fetch", "-d", "-y", "--output", temp_dir, pkg_name, "fusefs-unionfs"])
+            subprocess.call(["sudo", "pkg", "fetch", "-d", "-y", "--output", temp_dir, pkg_name, "fusefs-unionfs"]) # -d for dependencies pulls in ALL dependencies. Do we want that?
         except:
             print("Could not run pkg")
             exit(1)
