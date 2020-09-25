@@ -97,6 +97,18 @@ gmake
 DESTDIR="${uzip}" gmake install
 cd -
 
+# An editor that can at least edit .plist files, and provides code completion
+wget http://download-mirror.savannah.gnu.org/releases/gnustep-nonfsf/HighlighterKit-0.1.3.tar.gz
+tar xf HighlighterKit-0.1.3.tar.gz
+cd ./HighlighterKit-/
+gmake
+cp -r ./HighlighterKit.framework "${uzip}/usr/local/GNUstep/Local/Library/Frameworks/" # FIXME: 'gmake install' fails
+cd -
+wget http://download-mirror.savannah.gnu.org/releases/gnustep-nonfsf/Gemas-0.4.tar.gz
+tar xf Gemas-0.4.tar.gz
+cd Gemas-*/
+gmake
+cp -r ./Gemas.app/ "${uzip}/usr/local/GNUstep/Local/Applications/" # FIXME: 'gmake install' fails
 cd "${HERE}"
 
 # Turn XDG desktop files into something GWorkspace understands
