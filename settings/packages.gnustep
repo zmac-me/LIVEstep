@@ -105,3 +105,5 @@ gmake
 # py37-xdg and py37-psutil are needed by desktop-to-app-wrapper
 py37-xdg
 py37-psutil
+# git-lite is useful for developing, which people will want to do in GNUstep...
+git-lite
