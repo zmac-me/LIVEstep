@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3.7
 
-# Not that the shebang cannot be /usr/bin/env ... if this script is intended to
+# Note that the shebang cannot be /usr/bin/env ... if this script is intended to
 # be run by rc.d
 
 # This implements enough of the XDG spec to create .app bundles for desktop files.
@@ -59,6 +59,7 @@ def d2a(desktopfile, destination):
         return
     if "Exec" in i.content["Desktop Entry"].keys():
         exec = i.content["Desktop Entry"]["Exec"]
+        exec = exec.replace(" %f", "").replace(" %F", "").replace(" %u", "").replace(" %U", "")
     else:
         print("No Exec=..., hence skipping '%s'" % desktopfile)
         return
