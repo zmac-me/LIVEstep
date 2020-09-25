@@ -1,5 +1,7 @@
-#!/usr/bin/env/ python3.7
+#!/usr/local/bin/python3.7
 
+# Not that the shebang cannot be /usr/bin/env ... if this script is intended to
+# be run by rc.d
 
 # This implements enough of the XDG spec to create .app bundles for desktop files.
 # If someone cares enough about the convoluted XDG spec to implement it more fully,
