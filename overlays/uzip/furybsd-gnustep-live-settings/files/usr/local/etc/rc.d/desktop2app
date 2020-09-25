@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# PROVIDE: desktop2app
+# REQUIRE: DAEMON
+# BEFORE:  LOGIN
+# KEYWORD: nojail shutdown
+
+. /etc/rc.subr
+
+name="desktop2app"
+
+pidfile="/var/run/${name}.pid"
+command="/usr/sbin/daemon"
+command_args="-c -f -P ${pidfile} -r /usr/local/bin/${name}"
+
+load_rc_config $name
+run_rc_command "$1"

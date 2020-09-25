@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# PROVIDE: desktop-to-app-wrapper
+# REQUIRE: DAEMON
+# BEFORE:  LOGIN
+# KEYWORD: nojail shutdown
+
+. /etc/rc.subr
+
+name="desktop-to-app-wrapper"
+
+command_interpreter="/usr/bin/env python3.7"
+command="/usr/bin/${name}"
+
+load_rc_config $name
+run_rc_command "$1"

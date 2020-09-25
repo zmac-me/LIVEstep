@@ -20,13 +20,6 @@ defaults write NSGlobalDomain NSBoldFont "Luxi Sans"
 defaults write NSGlobalDomain NSUserFont "Luxi Sans"
 defaults write NSGlobalDomain NSFontSize "13"
 
-# Courtesy mounts
-sudo mkdir -p /Local /System /Users /Volumes
-mount | grep  /Local || sudo mount -t nullfs /usr/local/GNUstep/Local /Local
-mount | grep  /System || sudo mount -t nullfs /usr/local/GNUstep/System /System
-mount | grep  /Users || sudo mount -t nullfs /usr/home /Users
-mount | grep  /Volumes || sudo mount -t nullfs /media /Volumes
-
 # Enable single click for the Dock; needs patched GWorkspace from
 # https://github.com/BertrandDekoninck/gworkspace
 defaults write GWorkspace dockclickpolicy 1
@@ -51,11 +44,6 @@ compton &
 
 # Show a global menu while a non-GS application is foremost
 openapp TopBar &
-
-# Create .app wrappers for newly installed XDG applications
-# TODO: Move this out of here and turn it into a service that can be started with "service start..."
-# so that we don't need sudo and have this run system-wide rather than per-user
-sudo desktop-to-app-wrapper &
 
 openapp GWorkspace &
 

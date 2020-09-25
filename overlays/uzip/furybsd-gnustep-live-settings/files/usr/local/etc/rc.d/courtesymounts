@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# PROVIDE: courtesymounts ￼
+# REQUIRE: DAEMON
+# BEFORE:  LOGIN
+# KEYWORD: nojail shutdown
+
+. /etc/rc.subr
+
+name="courtesymounts"
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+
+courtesymounts_start()
+{
+    mkdir -p /Local /System /Users /Volumes
+    mount | grep /Local || mount -t nullfs /usr/local/GNUstep/Local /Local
+    mount | grep /System || mount -t nullfs /usr/local/GNUstep/System /System
+    mount | grep /Users || mount -t nullfs /usr/home /Users
+    mount | grep /Volumes || mount -t nullfs /media /Volumes
+}
+
+courtesymounts_stop()
+{
+    umount /Local
+    umount /System
+    umount /Users
+    umount /Volumes
+    rm -r /Local /System /Users /Volumes
+}
+
+load_rc_config $name
+run_rc_command "$1"
