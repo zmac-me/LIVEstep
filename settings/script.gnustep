@@ -17,17 +17,13 @@ pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm l
 
 cd /tmp
 
-REPOS="BertrandDekoninck/TopBar"
-# BertrandDekoninck/rik.theme
-
-for REPO in $REPOS ; do
-  git clone "https://github.com/${REPO}"
-  cd $(basename "${REPO}")
-  gmake
-  ls "${uzip}"
-  DESTDIR="${uzip}" gmake install
-  cd -
-done
+git clone "https://github.com/BertrandDekoninck/TopBar"
+cd TopBar
+sed -i -e 's|@"GNUstep"|@"TODO: Show non-GNUstep menu here. Can you implement it? https://github.com/BertrandDekoninck/TopBar/issues/1"|g' TopBar.m
+gmake
+ls "${uzip}"
+DESTDIR="${uzip}" gmake install
+cd -
 
 REPO="AlessandroSangiuliano/rik.theme"
 git clone "https://github.com/${REPO}"
