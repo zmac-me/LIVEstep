@@ -2,7 +2,8 @@
 
 # This script is executed on the build host
 # at the time when the image is created. This is just a temporary script
-# until the software below is available in pkg
+# until the software below is available in pkg.
+# Ideally everything gets upstreamed, removing the need for the bulk of this file.
 
 HERE=$(readlink -f .)
 
@@ -72,6 +73,25 @@ sed -i -e 's|.icns|.png|g' "${uzip}"/usr/local/GNUstep/Local/Applications/TextEd
 rm  "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.icns
 rm  "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/*-e 
 rsvg-convert -a -w 48 -h 48 "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.svg -o "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.png
+
+# Replace icons for applications in Local; TODO: Complete this task for all icons and also for those in System
+set +e # Continue in case of errors
+REPLACEMENTS="AClock;apps/128/clock AdressManager;apps/128/address-book.svg batmon;devices/128/battery.svg Chess;apps/128/chess.svg FTP;apps/128/com.github.alecaddd.taxi.svg"
+for REPLACEMENT in $REPLACEMENTS ; do
+  APP=$(echo $REPLACEMENT | cut -d ";" -f 1)
+  ICON=$(echo $REPLACEMENT | cut -d ";" -f 2)
+  if [ -e "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${APP}.desktop" ] ; then
+    OLD=$(echo  "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${APP}.desktop" | grep Icon= | cut -d "=" -f 2 | sed -e 's|.tiff||g' | sed -e 's|.icns||g')
+    curl https://raw.githubusercontent.com/zayronxio/Mojave-CT/master/$ICON > "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${OLD}.svg"
+    sed -i -e 's|.icns|.png|g' "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/Info-gnustep.plist" || true
+    sed -i -e 's|.icns|.png|g' "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${APP}.desktop" || true
+    sed -i -e 's|.tiff|.png|g' "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/Info-gnustep.plist" || true
+    sed -i -e 's|.tiff|.png|g' "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${APP}.desktop" || true
+    rm  "${uzip}"/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/*-e 
+    rsvg-convert -a -w 48 -h 48 "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${OLD}.svg" -o "${uzip}/usr/local/GNUstep/Local/Applications/${APP}.app/Resources/${OLD}.png"
+  fi
+done
+set -e # Do not continue in case of errors
 
 # Build all applications for the GNUstep Applications project
 # as the ones in FreeBSD pkg are not complete; FIXME
@@ -144,4 +164,3 @@ rm -f "${uzip}"/usr/local/GNUstep/System/Library/Images/LogoGNUstep.tiff
 # compton &
 # openapp GWorkspace
 # EOF
-
