@@ -129,6 +129,7 @@ cd -
 #cd "${HERE}"
 
 # Turn XDG desktop files into something GWorkspace understands
+chroot "${uzip}" find /usr/local/share/applications/ -name '*.desktop' -exec desktop2app {} /usr/local/GNUstep/Local/Applications/ \;
 chroot "${uzip}" find /usr/share/skel/Desktop/ -name '*.desktop' -exec desktop2app {} /usr/share/skel/Desktop/ \;
 chroot "${uzip}" find /usr/share/skel/Desktop/ -name '*.desktop' -delete
 rm -rf "${uzip}"/*.core
