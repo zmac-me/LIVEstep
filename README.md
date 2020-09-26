@@ -1,4 +1,4 @@
-# LIVEstep [![Build Status](https://api.cirrus-ci.com/github/furybsd/furybsd-livecd.svg)](https://cirrus-ci.com/github/furybsd/furybsd-livecd)
+# LIVEstep [![Build Status](https://api.cirrus-ci.com/github/probonopd/LIVEstep.svg)](https://cirrus-ci.com/github/furybsd/furybsd-livecd)
 
 Work-in-progress Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/furybsd/furybsd-livecd/. Still rough around the edges. Handle with care.
 
