@@ -45,10 +45,12 @@ compton &
 # Show a global menu while a non-GS application is foremost
 openapp TopBar &
 
-openapp GWorkspace &
-
 # Does not work properly yet, still in early development
 # uroswm
 
 # TODO: Replace Window Maker with something more suitable
+# For now, start it in the background, this way it will not show up when GWorkspace exits
 wmaker --dont-restore --no-autolaunch --no-clip --no-dock --no-drawer --replace --static
+
+# Exit the session when GWorkspace exits
+openapp GWorkspace
