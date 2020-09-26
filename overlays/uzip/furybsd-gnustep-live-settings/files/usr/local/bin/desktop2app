@@ -191,6 +191,7 @@ def directory_changed(path):
                 while checkIfProcessRunning("pkg"):
                     time.sleep(3)
                     print("Waiting for pkg process to exit...")
+                time.sleep(1)
                 print("Creating wrapper for' %s'" % (df))
                 d2a(df, "/usr/local/GNUstep/Local/Applications/")
                 try:
