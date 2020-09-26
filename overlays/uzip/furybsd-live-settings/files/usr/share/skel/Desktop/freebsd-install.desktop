@@ -10,4 +10,4 @@ Exec=/usr/local/bin/freebsd-install
 TryExec=/usr/local/bin/freebsd-install
 Name=Install FreeBSD
 Comment=Install the FreeBSD operating system on your computer
-Icon=freebsd
+Icon=install
