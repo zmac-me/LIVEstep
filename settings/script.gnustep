@@ -161,8 +161,8 @@ wget "https://res.allmacwallpaper.com/get/iMac-21-inch-wallpapers/Minimalist-blu
 # Add information about the build to the about box of GWorkspace and to the wallpaper
 # at least for the continuous builds
 mogrify -fill white -pointsize 13 -gravity SouthEast -draw "text 10,10 '$VERSION_TEXT'" "${uzip}"/usr/local/share/slim/themes/default/background.jpg
-sed -i -e 's|07 2016|'"${VERSION_TEXT}"'|g' "${uzip}"/usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist
-rm "${uzip}"/usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist-e || true
+sed -i -e 's|07 2016|'"${VERSION_TEXT}"'|g' "${uzip}"/usr/local/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist
+rm "${uzip}"/usr/local/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist-e || true
 
 # Autologin without a display manager
 # Commented out because not working; using slim for now
@@ -170,15 +170,3 @@ rm "${uzip}"/usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-
 # chroot "${uzip}" sed -i -e 's|^ttyv0.*$|ttyv0 "/usr/libexec/getty al.liveuser" xterm on secure|g' /etc/ttys
 # chroot "${uzip}" rm /etc/ttys-e
 # chroot "${uzip}" echo 'if $tty == ttyv0 startx' >> /usr/share/skel/dot.login 
-
-# In the installed system:
-# cat > /.xinitrc <<\EOF
-# #!/bin/sh
-# . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
-# defaults write NSGlobalDomain GSTheme Rik
-# defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
-# defaults write NSGlobalDomain GSBackHandlesWindowDecoration NO # https://github.com/AlessandroSangiuliano/uroswm/issues/2#issuecomment-695198746
-# # uroswm &
-# compton &
-# openapp GWorkspace
-# EOF
