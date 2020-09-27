@@ -11,6 +11,8 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
+VERSION_TEXT="$(date +'%d/%m/%Y') $(git config --get remote.origin.url) $(git rev-parse --short HEAD)"
+
 pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
@@ -160,9 +162,8 @@ wget "https://res.allmacwallpaper.com/get/iMac-21-inch-wallpapers/Minimalist-blu
 # Add information about the build to the about box of GWorkspace and to the wallpaper
 # at least for the continuous builds
 pkg install -y font-bh-ttf # Luxi Sans by Bigelow&Holmes
-TEXT="$(date +'%d/%m/%Y') $(git config --get remote.origin.url) $(git rev-parse --short HEAD)"
-mogrify -font "Luxi Sans" -fill white -pointsize 13 -gravity SouthEast -draw "text 10,10 '$TEXT'" wall.jpg
-sed -i -e 's|07 2016|'"${TEXT}"'|g' /usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist
+mogrify -font "Luxi Sans" -fill white -pointsize 13 -gravity SouthEast -draw "text 10,10 '$VERSION_TEXT'" "${uzip}/usr/local/share/slim/themes/default/background.jpg"
+sed -i -e 's|07 2016|'"${VERSION_TEXT}"'|g' /usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist
 rm /usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist-e || true
 
 # Autologin without a display manager
