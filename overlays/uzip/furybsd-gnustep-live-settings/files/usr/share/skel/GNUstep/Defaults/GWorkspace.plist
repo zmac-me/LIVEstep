@@ -41,6 +41,8 @@
 	<string>Gorm</string>
 	<key>6</key>
 	<string>ProjectCenter</string>
+	<key>7</key>
+	<string>Otter Browser</string>
     </dict>
     <key>browserColsWidth</key>
     <string>214</string>
@@ -65,6 +67,8 @@
 	<string>5</string>
 	<key>iconsize</key>
 	<string>48</string>
+	<key>imagepath</key>
+	<string>/usr/local/share/slim/themes/default/background.jpg</string>
 	<key>imagestyle</key>
 	<string>0</string>
 	<key>indexes</key>
