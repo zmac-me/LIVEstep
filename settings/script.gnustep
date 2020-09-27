@@ -150,7 +150,7 @@ wget -c "https://github.com/probonopd/Utilities/archive/master.zip"
 unzip master.zip
 mv ./Utilities-master/*.app "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
 rm -rf Utilities-master/ master.zip
-( cd "${uzip}/usr/share/skel/Desktop/" ; find /usr/local/GNUstep/Local/Applications/Utilities -name '*.app' -exec ln -s {} . \; )
+( cd "${uzip}/usr/share/skel/Desktop/" ; find "${uzip}"/usr/local/GNUstep/Local/Applications/Utilities -name '*.app' -exec ln -s {} . \; )
 
 # Get wallpaper
 # TODO: Also check
