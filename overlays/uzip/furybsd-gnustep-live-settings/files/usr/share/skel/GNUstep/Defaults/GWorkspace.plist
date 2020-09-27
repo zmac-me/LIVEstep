@@ -70,19 +70,21 @@
 	<key>imagepath</key>
 	<string>/usr/local/share/slim/themes/default/background.jpg</string>
 	<key>imagestyle</key>
-	<string>0</string>
+	<string>1</string>
 	<key>indexes</key>
 	<dict>
 	</dict>
 	<key>labeltxtsize</key>
 	<string>12</string>
 	<key>usebackimage</key>
-	<string>0</string>
+	</true>
     </dict>
     <key>dockclickpolicy</key>
     <string>1</string>
     <key>dockposition</key>
     <string>0</string>
+    <key>dockstyle</key>
+    <string>1</string>
     <key>tabshelf</key>
     <dict>
 	<key>auto_hide</key>
