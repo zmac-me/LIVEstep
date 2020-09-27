@@ -13,7 +13,7 @@ fi
 
 VERSION_TEXT="$(date +'%d/%m/%Y') $(git config --get remote.origin.url) $(git rev-parse --short HEAD)"
 
-pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2 pkgconf imagemagick
+pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2 pkgconf imagemagick wget librsvg2 font-bh-ttf 
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
@@ -64,7 +64,6 @@ DESTDIR="${uzip}" gmake install
 cd -
 
 # Replace TextEdit icon
-pkg install wget librsvg2
 curl https://raw.githubusercontent.com/zayronxio/Mojave-CT/master/apps/128/accessories-text-editor.svg > "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/accessories-text-editor.svg
 sed -i -e 's|.icns|.png|g' "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/Info-gnustep.plist
 sed -i -e 's|.icns|.png|g' "${uzip}"/usr/local/GNUstep/Local/Applications/TextEdit.app/Resources/TextEdit.desktop
@@ -161,7 +160,6 @@ wget "https://res.allmacwallpaper.com/get/iMac-21-inch-wallpapers/Minimalist-blu
 
 # Add information about the build to the about box of GWorkspace and to the wallpaper
 # at least for the continuous builds
-pkg install -y font-bh-ttf # Luxi Sans by Bigelow&Holmes
 mogrify -font "Luxi Sans" -fill white -pointsize 13 -gravity SouthEast -draw "text 10,10 '$VERSION_TEXT'" "${uzip}/usr/local/share/slim/themes/default/background.jpg"
 sed -i -e 's|07 2016|'"${VERSION_TEXT}"'|g' /usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist
 rm /usr/share/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist-e || true
