@@ -2,36 +2,36 @@
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
-# This works
-defaults write NSGlobalDomain GSTheme Rik
+# This works; commented out since we ship a plist which sets this
+# defaults write NSGlobalDomain GSTheme Rik
 
-# Enable global menu bar
-defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
+# Enable global menu bar; commented out since we ship a plist which sets this
+# defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
 
-# Does this do anything?
-defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES # https://github.com/AlessandroSangiuliano/uroswm/issues/2#issuecomment-695198746
+# Does this do anything?; commented out since we ship a plist which sets this
+# defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES # https://github.com/AlessandroSangiuliano/uroswm/issues/2#issuecomment-695198746
 
-# Do not show hidden files in GWorkspace
-defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
+# Do not show hidden files in GWorkspace; commented out since we ship a plist which sets this
+# defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
 
 # Enable GSPdf
 defaults write GSPdf GhostScriptPath /usr/local/bin/gs
 
-# Fonts
-defaults write NSGlobalDomain NSFont "Luxi Sans"
-defaults write NSGlobalDomain NSBoldFont "Luxi Sans"
-defaults write NSGlobalDomain NSUserFont "Luxi Sans"
-defaults write NSGlobalDomain NSFontSize "13"
+# Fonts; commented out since we ship a plist which sets this
+# defaults write NSGlobalDomain NSFont "Luxi Sans"
+# defaults write NSGlobalDomain NSBoldFont "Luxi Sans"
+# defaults write NSGlobalDomain NSUserFont "Luxi Sans"
+# defaults write NSGlobalDomain NSFontSize "13"
 
 # Enable single click for the Dock; needs patched GWorkspace from
-# https://github.com/BertrandDekoninck/gworkspace
-defaults write GWorkspace dockclickpolicy 1
+# https://github.com/BertrandDekoninck/gworkspace; commented out since we ship a plist which sets this
+# defaults write GWorkspace dockclickpolicy 1
 
-# Use Terminal.app
-defaults write GWorkspace terminal_services YES
+# Use Terminal.app; commented out since we ship a plist which sets this
+# defaults write GWorkspace terminal_services YES
 
-# Bring Dock to the left
-defaults write GWorkspace dockposition 0
+# Bring Dock to the left; commented out since we ship a plist which sets this
+# defaults write GWorkspace dockposition 0
 
 # Put applications into Dock; commented out since we ship a plist which sets this
 # defaults write GWorkspace applications '{ 1 = TextEdit; 2 = Terminal; 3 = SimpleAgenda; 4 = GNUMail; 5 = Gorm; 6 = ProjectCenter; }'
