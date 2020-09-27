@@ -145,10 +145,10 @@ rm -f "${uzip}"/usr/local/GNUstep/System/Library/Images/LogoGNUstep.tiff
 
 # Get additional applications
 mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
-wget -c "https://github.com/probonopd/Zeroconf.app/archive/master.zip"
+wget -c "https://github.com/probonopd/Utilities/archive/master.zip"
 unzip master.zip
-mv "Zeroconf.app-master/Zeroconf.app" "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
-rm -rf Zeroconf.app-master/ master.zip
+mv "Utilities-master/*.app" "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
+rm -rf Utilities-master/ master.zip
 
 # Autologin without a display manager
 # Commented out because not working; using slim for now
