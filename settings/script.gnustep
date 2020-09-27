@@ -11,9 +11,9 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
-VERSION_TEXT="$(date +'%d/%m/%Y') $(git config --get remote.origin.url) $(git rev-parse --short HEAD)"
+VERSION_TEXT=$(date +'%d/%m/%Y') "$CIRRUS_REPO_CLONE_URL" "$CIRRUS_CHANGE_IN_REPO"
 
-pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2 pkgconf imagemagick wget librsvg2 font-bh-ttf 
+pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2 pkgconf ImageMagick6 wget librsvg2 font-bh-ttf 
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
