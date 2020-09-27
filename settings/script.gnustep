@@ -147,9 +147,9 @@ rm -f "${uzip}"/usr/local/GNUstep/System/Library/Images/LogoGNUstep.tiff
 mkdir -p "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
 wget -c "https://github.com/probonopd/Utilities/archive/master.zip"
 unzip master.zip
-mv "Utilities-master/*.app" "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
+mv ./Utilities-master/*.app "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
 rm -rf Utilities-master/ master.zip
-ln -s "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/*" "${uzip}/usr/share/skel/Desktop/"
+ln -s "${uzip}"/usr/local/GNUstep/Local/Applications/Utilities/*.app "${uzip}/usr/share/skel/Desktop/"
 
 # Get wallpaper
 # TODO: Also check
