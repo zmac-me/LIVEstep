@@ -13,7 +13,7 @@ fi
 
 VERSION_TEXT="$(date +'%d/%m/%Y') $(git config --get remote.origin.url) $(git rev-parse --short HEAD)"
 
-pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2 pkgconf
+pkg install -y git gmake gnustep-make gnustep-gui gnustep xcb-util xcb-util-wm libXfixes cairo librsvg2 pkgconf imagemagick
 
 . /usr/local/GNUstep/System/Makefiles/GNUstep.sh
 
