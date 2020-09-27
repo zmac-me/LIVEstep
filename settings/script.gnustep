@@ -149,13 +149,13 @@ wget -c "https://github.com/probonopd/Utilities/archive/master.zip"
 unzip master.zip
 mv ./Utilities-master/*.app "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
 rm -rf Utilities-master/ master.zip
-ln -s "${uzip}"/usr/local/GNUstep/Local/Applications/Utilities/*.app "${uzip}/usr/share/skel/Desktop/"
+( cd "${uzip}/usr/share/skel/Desktop/" ; ln -s /usr/local/GNUstep/Local/Applications/Utilities/*.app . )
 
 # Get wallpaper
 # TODO: Also check
 # https://papers.co/desktop/vg41-ribbon-abstract-art-blue-pattern/
 # https://papers.co/desktop/vm16-abstract-blue-rhytm-pattern/
-wget -c "https://res.allmacwallpaper.com/get/iMac-21-inch-wallpapers/Minimalist-blue-1920x1080/1686-9.jpg" -O "${uzip}/usr/local/share/slim/themes/default/background.jpg"
+wget "https://res.allmacwallpaper.com/get/iMac-21-inch-wallpapers/Minimalist-blue-1920x1080/1686-9.jpg" -O "${uzip}/usr/local/share/slim/themes/default/background.jpg"
 
 # Add information about the build to the about box of GWorkspace and to the wallpaper
 # at least for the continuous builds
