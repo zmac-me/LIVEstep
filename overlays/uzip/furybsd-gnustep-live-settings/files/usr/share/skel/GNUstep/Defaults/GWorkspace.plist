@@ -23,10 +23,6 @@
     </array>
     <key>GSWorkspaceApplication</key>
     <string>GWorkspace</string>
-    <key>NSWindow Frame preferencesWin</key>
-    <string>100 100 396 310 0 0  1920 1056 </string>
-    <key>NSWindow Frame run_external</key>
-    <string>477 530 323 148 0 0  1920 1056 </string>
     <key>applications</key>
     <dict>
 	<key>1</key>
@@ -44,10 +40,16 @@
 	<key>7</key>
 	<string>Otter Browser</string>
     </dict>
+    <key>auto_calculate_sizes</key>
+    <string>NO</string>
     <key>browserColsWidth</key>
-    <string>214</string>
+    <string>200</string>
     <key>default_sortorder</key>
-    <string>0</string>
+    <integer>0</integer>
+    <key>defaulteditor</key>
+    <string>nedit.app</string>
+    <key>defxterm</key>
+    <string>xterm</string>
     <key>desktopinfo</key>
     <dict>
 	<key>backcolor</key>
@@ -62,70 +64,78 @@
 	    <string>0.3</string>
 	</dict>
 	<key>fsn_info_type</key>
-	<string>0</string>
+	<integer>0</integer>
 	<key>iconposition</key>
-	<string>5</string>
+	<integer>5</integer>
 	<key>iconsize</key>
-	<string>48</string>
+	<integer>48</integer>
 	<key>imagepath</key>
 	<string>/usr/local/share/slim/themes/default/background.jpg</string>
 	<key>imagestyle</key>
-	<string>1</string>
-	<key>indexes</key>
-	<dict>
-	</dict>
+	<integer>3</integer>
 	<key>labeltxtsize</key>
-	<string>12</string>
+	<integer>12</integer>
 	<key>usebackimage</key>
-	</true>
+	<true/>
     </dict>
     <key>dockclickpolicy</key>
-    <string>1</string>
+    <integer>1</integer>
     <key>dockposition</key>
-    <string>0</string>
+    <integer>0</integer>
     <key>dockstyle</key>
-    <string>1</string>
-    <key>tabshelf</key>
+    <integer>1</integer>
+    <key>hiddendirs</key>
+    <array>
+    </array>
+    <key>hidedock</key>
+    <string>NO</string>
+    <key>history_cache</key>
+    <integer>20</integer>
+    <key>last_active_inspector</key>
+    <integer>0</integer>
+    <key>last_used_modules</key>
     <dict>
-	<key>auto_hide</key>
-	<false/>
-	<key>tabs</key>
-	<array>
-	    <dict>
-		<key>Tab1</key>
-		<dict>
-		    <key>icons</key>
-		    <array>
-		    </array>
-		    <key>iconstype</key>
-		    <integer>0</integer>
-		</dict>
-	    </dict>
-	    <dict>
-		<key>Pasteboard</key>
-		<dict>
-		    <key>icons</key>
-		    <array>
-		    </array>
-		    <key>iconstype</key>
-		    <integer>1</integer>
-		</dict>
-	    </dict>
-	    <dict>
-		<key>last</key>
-		<dict>
-		    <key>icons</key>
-		    <array>
-		    </array>
-		    <key>iconstype</key>
-		    <integer>0</integer>
-		</dict>
-	    </dict>
-	</array>
+	<key>Name</key>
+	<integer>1</integer>
     </dict>
+    <key>lsfolders_paths</key>
+    <array>
+    </array>
+    <key>no_desktop</key>
+    <string>NO</string>
+    <key>saved_places</key>
+    <array>
+    </array>
+    <key>search_res_h</key>
+    <integer>0</integer>
     <key>terminal_services</key>
     <string>YES</string>
+    <key>tshelf</key>
+    <string>NO</string>
+    <key>tshelfpbfnum</key>
+    <string>0</string>
     <key>use_thumbnails</key>
+    <string>YES</string>
+    <key>usefiend</key>
+    <string>NO</string>
+    <key>uses_inspector</key>
+    <string>NO</string>
+    <key>uses_recycler</key>
+    <string>NO</string>
+    <key>uses_search_places</key>
+    <string>NO</string>
+    <key>usesthumbnails</key>
+    <string>YES</string>
+    <key>viewersinfo</key>
+    <array>
+	<dict>
+	    <key>key</key>
+	    <string>root_viewer</string>
+	    <key>path</key>
+	    <string>/</string>
+	</dict>
+    </array>
+    <key>xbundle</key>
     <string>NO</string>
 </dict>
 </plist>
