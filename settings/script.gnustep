@@ -150,6 +150,9 @@ unzip master.zip
 mv "Utilities-master/*.app" "${uzip}/usr/local/GNUstep/Local/Applications/Utilities/"
 rm -rf Utilities-master/ master.zip
 
+# Get wallpaper
+wget -c "https://res.allmacwallpaper.com/get/iMac-21-inch-wallpapers/Minimalist-blue-1920x1080/1686-9.jpg" -O "${uzip}/usr/local/share/slim/themes/default/background.jpg"
+
 # Autologin without a display manager
 # Commented out because not working; using slim for now
 # chroot "${uzip}" echo 'al.liveuser:al=liveuser:tc=std.230400:' >> /etc/gettytab
