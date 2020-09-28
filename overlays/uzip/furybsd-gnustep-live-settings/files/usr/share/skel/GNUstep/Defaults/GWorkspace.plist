@@ -72,7 +72,7 @@
 	<key>imagepath</key>
 	<string>/usr/local/share/slim/themes/default/background.jpg</string>
 	<key>imagestyle</key>
-	<integer>3</integer>
+	<integer>1</integer>
 	<key>labeltxtsize</key>
 	<integer>12</integer>
 	<key>usebackimage</key>
