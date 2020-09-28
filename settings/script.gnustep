@@ -165,6 +165,9 @@ mogrify -fill white -pointsize 13 -gravity SouthEast -draw "text 10,10 '$VERSION
 sed -i -e 's|07 2016|'"${VERSION_TEXT}"'|g' "${uzip}"/usr/local/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist
 rm "${uzip}"/usr/local/GNUstep/Local/Applications/GWorkspace.app/Resources/Info-gnustep.plist-e || true
 
+# Do not theme the GWorkspace icon
+rm "${uzip}"/usr/local/GNUstep/Local/Library/Themes/Rik.theme/Resources/ThemeImages/org.gnustep.GWorkspace/FileManager.tiff
+
 # Autologin without a display manager
 # Commented out because not working; using slim for now
 # chroot "${uzip}" echo 'al.liveuser:al=liveuser:tc=std.230400:' >> /etc/gettytab
