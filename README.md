@@ -2,7 +2,7 @@
 
 Work-in-progress Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/furybsd/furybsd-livecd/. Still rough around the edges. Handle with care.
 
-![](https://user-images.githubusercontent.com/2480569/93935441-262edc80-fd14-11ea-8f7b-000a61f047e2.png)
+![](https://user-images.githubusercontent.com/2480569/94470779-6be21e00-01c8-11eb-8fab-bbfc4c38d2e2.png)
 
 Download from https://github.com/probonopd/LIVEstep/releases/tag/continuous. Write to USB stick with:
 
