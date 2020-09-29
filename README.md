@@ -12,6 +12,8 @@ Download from https://github.com/probonopd/LIVEstep/releases/tag/continuous. Wri
 sudo dd if=FuryBSD-12.1-GNUSTEP.iso of=/dev/daX bs=4m status=progress
 ```
 
+From the running Live system, you can write the latest build to (another!) USB device using __Create Live Media.app__ (right on the desktop).
+
 ## Credentials for live media
 
 There is no password for `liveuser`. There is also no root password.
