@@ -2,7 +2,7 @@
 
 Work-in-progress Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/furybsd/furybsd-livecd/. Still rough around the edges. Handle with care.
 
-__This is pre-alpha software to find out how viable GNUstep is as a desktop today.__ Whether the project will continue depends on wehther enough people are interested in it, and whether we can find contributors who actually know and care about GNUstep.
+__This is pre-alpha software to find out how viable GNUstep is as a desktop today.__ Whether the project will continue depends on whether enough people are interested in it, and whether we can find contributors who actually know and care about GNUstep. If you are reading this, chances are that you are knowledgable about FreeBSD and/or GNUstep. If so, please consider contributing to this project.
 
 ![](https://user-images.githubusercontent.com/2480569/94470779-6be21e00-01c8-11eb-8fab-bbfc4c38d2e2.png)
 
