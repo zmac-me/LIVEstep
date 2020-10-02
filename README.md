@@ -20,4 +20,4 @@ There is no password for `liveuser`. There is also no root password.
 
 ## Contact
 
-`#furybsd` on `irc.freenode.net`
+`#furybsd` and `#GNUstep` on `irc.freenode.net`
