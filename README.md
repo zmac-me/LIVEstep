@@ -1,8 +1,6 @@
 # LIVEstep [![Build Status](https://api.cirrus-ci.com/github/probonopd/LIVEstep.svg)](https://cirrus-ci.com/github/furybsd/furybsd-livecd)
 
-Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/furybsd/furybsd-livecd/.__This is experimental software to find out how viable GNUstep on FreeBSD is as a desktop today.__ 
-
-This work has conceptually gone into [helloSystem](https://hellosystem.github.io/docs/), a desktop system based on Qt.
+Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/furybsd/furybsd-livecd/. __This was experimental software to find out how viable GNUstep on FreeBSD is as a desktop in 2020.__ This work has conceptually gone into [helloSystem](https://hellosystem.github.io/docs/), a desktop system based on Qt.
 
 ![](https://user-images.githubusercontent.com/2480569/94470779-6be21e00-01c8-11eb-8fab-bbfc4c38d2e2.png)
 
