@@ -15,3 +15,7 @@ From the running Live system, you can write the latest build to (another!) USB d
 ## Credentials for live media
 
 There is no password for `liveuser`. There is also no root password.
+
+## "Hello world" coding tutorial
+
+[Introduction to ProjectCenter on LIVEstep](https://peertube.co.uk/videos/watch/ec502a3d-e356-43cf-ba96-5bede68c81ae)
