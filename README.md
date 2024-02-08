@@ -1,6 +1,6 @@
 # LIVEstep [![Build Status](https://api.cirrus-ci.com/github/probonopd/LIVEstep.svg)](https://cirrus-ci.com/github/furybsd/furybsd-livecd)
 
-Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/furybsd/furybsd-livecd/. __This was experimental software to find out how viable GNUstep on FreeBSD is as a desktop in 2020.__ This work has conceptually gone into [helloSystem](https://hellosystem.github.io/docs/), a desktop system based on Qt.
+Live ISO based on FreeBSD with GNUstep and other components, made with https://github.com/jaronparsons/furybsd-livecd/. __This was experimental software to find out how viable GNUstep on FreeBSD is as a desktop in 2020.__ This work has conceptually gone into [helloSystem](https://hellosystem.github.io/docs/), a desktop system based on Qt.
 
 ![](https://user-images.githubusercontent.com/2480569/94470779-6be21e00-01c8-11eb-8fab-bbfc4c38d2e2.png)
 
@@ -18,4 +18,4 @@ There is no password for `liveuser`. There is also no root password.
 
 ## "Hello world" coding tutorial
 
-[Introduction to ProjectCenter on LIVEstep](https://peertube.co.uk/videos/watch/ec502a3d-e356-43cf-ba96-5bede68c81ae) by [Graham Lee](https://peertube.co.uk/accounts/leeg/video-channels)
+[Introduction to ProjectCenter on LIVEstep](https://www.youtube.com/watch?v=5SCkVPQGl9A&list=PLKMpKKmHd2SudZhgs0IQDMmTfbz7QFnYg) by [Graham Lee](https://www.youtube.com/@SewsAndCodes)
